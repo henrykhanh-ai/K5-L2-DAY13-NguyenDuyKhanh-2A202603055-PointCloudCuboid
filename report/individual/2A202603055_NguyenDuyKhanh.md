@@ -57,33 +57,33 @@ Lấy từ `submission/D13-2A202603055-bangA.csv`; số điểm lấy từ cột
 
 | Cuboid (frame, idx, class) | z | h | z đáy = z − h/2 | dist_m | r = √(x²+y²+z²) | yaw_deg | Nhận xét (lơ lửng / chìm / chạm đường) |
 |---|---|---|---|---|---|---|---|
-| chưa làm | | | | | | | |
-| chưa làm | | | | | | | |
-| chưa làm | | | | | | | |
+| s01f30, 1, Car | -0.936 | 1.605 | -0.936 − 1.605/2 = -1.738 | 8.36 | 8.41 | 271.0 | Chạm đường (≈ −1,7 m) |
+| s01f30, 2, Car | -1.016 | 1.526 | -1.016 − 1.526/2 = -1.779 | 17.07 | 17.10 | 270.1 | Chạm đường (≈ −1,7 m) |
+| s01f30, 3, Car | -1.156 | 1.818 | -1.156 − 1.818/2 = -2.065 | 24.27 | 24.30 | 268.7 | Thấp hơn mặt đường ≈ 0,36 m (vượt ngưỡng 0,3 m) → hộp bị chìm |
 
-(a) Cuboid gần nhất: chưa làm. Cuboid xa nhất: chưa làm.
+(a) Cuboid gần nhất: s03f01 idx 3 (Car), x = 3,076, y = −2,667, z = −1,011 → dist_m = 4,07 m, r = 4.19 m. Cuboid xa nhất: s03f31 idx 5 (Car), x = −1,269, y = 66,926, z = −1,098 → dist_m = 66,94 m, r = 66.95 m (nằm ngoài giới hạn 50 m của guideline).
 
 (b) Kích thước so với bảng 4.3:
-- Bus: l = 24,63 m, w = 2,62 m, h = 3,38 m. Dài vượt khoảng xe buýt thường 10,0–12,5 m (và xe buýt nối toa 17,0–18,5 m). Lý do: chưa làm.
-- Car: l = 4,78 m, w = 2,19 m, h = 1,49 m. Rộng vượt khoảng 1,70–2,10 m. Lý do: chưa làm.
-- Cyclist: l = 2,54 m, w = 1,37 m, h = 1,92 m. Rộng vượt khoảng xe máy có người 0,70–0,95 m. Lý do: chưa làm.
+- Bus: l = 24,63 m, w = 2,62 m, h = 3,38 m. Dài vượt khoảng xe buýt thường 10,0–12,5 m (và xe buýt nối toa 17,0–18,5 m). Lý do: vẽ dư (hộp dài hơn thân xe thật).
+- Car: l = 4,78 m, w = 2,19 m, h = 1,49 m. Rộng vượt khoảng 1,70–2,10 m. Lý do: chưa chắc — cụm điểm bị nhiễu nên khó xác định đúng bề rộng.
+- Cyclist: l = 2,54 m, w = 1,37 m, h = 1,92 m. Rộng vượt khoảng xe máy có người 0,70–0,95 m. Lý do: chưa chắc.
 
-(c) `yaw_deg` xe cùng chiều: chưa làm °; xe ngược chiều: chưa làm °.
+(c) `yaw_deg` xe cùng chiều: 270,1° (s01f30 idx 2, gần 270° = phía trước −y); xe ngược chiều: 89,7° và 90,7° (hai xe, gần 90° = hướng +y, ngược chiều). Hai nhóm cách nhau khoảng 180° đúng như hệ trục VF.
 
 Mật độ theo khoảng cách:
 
 | Cuboid (frame, idx, class) | dist_m | Số điểm (`points_in`) |
 |---|---|---|
-| chưa làm | | |
-| chưa làm | | |
-| chưa làm | | |
-| chưa làm | | |
+| s01f30, 1, Car | 8.4 | 1711 |
+| s01f30, 4, Car | 11.7 | 1086 |
+| s01f30, 2, Car | 17.1 | 545 |
+| s01f30, 3, Car | 24.3 | 247 |
 
-Quy luật: chưa làm.
+Quy luật: số điểm giảm nhanh khi xa dần (8,4 m: 1711 → 11,7 m: 1086 → 17,1 m: 545 → 24,3 m: 247), cùng xu hướng với slide (~1968 ở 0–10 m, 718 ở 10–20 m, 214 ở 20–30 m).
 
-Tự kiểm: đã sửa hộp bằng cách xoay lại hướng — chưa làm. Cờ giữ nguyên: chưa làm.
+Tự kiểm: đã sửa hộp bằng cách xoay lại hướng — s03f31 idx 2 và idx 5 (Car). Cờ giữ nguyên: các cờ kích thước còn lại (Bus dài, Car và Cyclist rộng) — lý do ghi ở (b).
 
-Đổi kiểm: với 2A202603070. Hai số đối chiếu và kết quả: chưa làm.
+Đổi kiểm: với 2A202603070. Hai số đối chiếu và kết quả: cùng xem frame s04f06; hướng (yaw) trùng nhau và khớp vật được gán.
 
 ## 6. Ý nghĩa của nhãn, cách dùng AI và điều còn chưa chắc
 (a) Nhãn 3D đo bằng mét để phản ánh chính xác kích thước thật và khoảng cách vật lý trong không gian thực, nên model học được vật cách xe bao xa và to cỡ nào. Vật thể thưa điểm thiếu hình dạng bề mặt rõ ràng, nên cần quy tắc riêng để tránh gán sai kích thước hộp bao hoặc bỏ sót vật thể quan trọng.
